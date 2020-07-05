@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, View } from 'react-native';
+import { Text, Image, View } from 'react-native';
 import { EstilosItem } from './estilos/estilos';
 
 export default class DetalleItem extends React.Component {
@@ -12,14 +12,10 @@ export default class DetalleItem extends React.Component {
   render() {
     let item = this.props.options
     return (
-
       <View style={EstilosItem.Estiloflatview}>
-        { /* JSX    <Image style={EstilosItem.TituloApp} source={{uri: "http://goog.com/imagen.jpg" , width: 64, height: 64}}  resizeMode="stretch" />
-          https://carlosazaustre.es/estructura-de-un-componente-en-react/
-          */
-        }
-
+        { /*  https://carlosazaustre.es/estructura-de-un-componente-en-react/*/}
         <View style={EstilosItem.colIzquierda}>
+          { /*  <Image source={{uri: "http://goog.com/imagen.jpg" , width: 64, height: 64}}  resizeMode="stretch" /> */}
           <Image style={EstilosItem.stretch} source={require('./fotos/fotoauto1.jpg')} />
         </View>
         <View style={EstilosItem.colDerecha}>
@@ -27,7 +23,7 @@ export default class DetalleItem extends React.Component {
           <View style={EstilosItem.EstiloDescripcion}>
             <Text style={{ fontWeight: "bold" }} >{item.ModeloAuto.MarcaModelo.Nombre} </Text>
             <Text>{item.ModeloAuto.Nombre}</Text>
-            <Text style={EstilosItem.EstiloDescripcion}>{item.Descripcion}</Text>
+            <Text style={[{ color: 'red' }, EstilosItem.EstiloDescripcion]}>{item.Descripcion}</Text>
           </View>
         </View>
       </View>

@@ -8,12 +8,6 @@ export default class Cabecera extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('------------------------------------------------------------------------');
-    console.log(this.props);
-    let parametrosant = this.props.navegador.navigation.state.routeName;
-    console.log('LLLLLLLLLLLLLLLLLL');
-    console.log(parametrosant);
-    console.log('------------------------------------------------------------------------');
   }
 
   navigate = () => {
@@ -50,19 +44,19 @@ export default class Cabecera extends React.Component {
 
 const styles = StyleSheet.create({
   Cabecera: {
-    fontFamily: 'Helvetica',
+
     //width:60,
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#CB364A',
   },
   TituloApp: {
-    fontFamily: 'Helvetica',
+
     backgroundColor: '#CB364A',
     flex: 2,
   },
   ImagenTitulo: {
-    fontFamily: 'Helvetica',
+
     backgroundColor: '#CB364A',
     flex: 4,
     borderRadius: 35,

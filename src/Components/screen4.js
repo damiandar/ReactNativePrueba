@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { FlatList, Alert, Button, View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { Alert, Button, View, Text, StyleSheet } from "react-native";
 import { NavigationActions } from "react-navigation";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
 
 const rutaAPI = 'http://winit.com.ar/api/comentario';
 
@@ -11,9 +9,9 @@ class Screen4View extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { ValorIngresado: '', idIngresado: 0 }
   }
 
+  /* https://code.i-harness.com/es/q/1ccdca4 */
   static navigationOptions = { title: "Pantalla Detalle 4" };
 
   navigate = () => {
@@ -29,9 +27,11 @@ class Screen4View extends Component {
   ListarComentario() {
     return fetch(rutaAPI)
       .then((response) => response.json())
-      .then((responseJson) => { this.setState({ dataSource: responseJson, }, function () { }); })
+      .then((responseJson) => { console.log(responseJson); })
       .catch((error) => { console.error(error); });
   }/*Fin De Listar comentario */
+
+
 
 
   MostrarAlerta(Titulo, Mensaje) {
@@ -56,25 +56,19 @@ class Screen4View extends Component {
       <View style={{ flex: 1 }}>
         <View >
           <Button title="Volver a pantalla 1" onPress={this.navigate} />
-          <Text style={{ fontSize: 23 }} >Grilla de dataSource</Text>
+          <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>
+            <FontAwesome>{Icons.chevronLeft}</FontAwesome>
+            Text
+      </Text>
+          <Text style={{ fontSize: 23 }} >GRILLA</Text>
           <View style={{ fontFamily: 'Helvetica' }}>
-            <FontAwesomeIcon.Button name="facebook" backgroundColor="#3b5998" onPress={this.loginWithFacebook}>
-              Login with Facebook
+            <FontAwesomeIcon.Button name="facebook" backgroundColor="#3b5998" onPress={this.PedirToken}>
+              Pedir Token
             </FontAwesomeIcon.Button>
-            <FlatList
-              data={this.state.dataSource}
-              renderItem={
-                ({ item }) =>
-                  <View>
-                    <TouchableOpacity style={styles.container} onPress={() => this.MostrarAlerta(item.ID, item.Descripcion)} >
-                      <Text style={styles.image}>{item.ID}</Text>
-                      <Text style={styles.description}>{item.Descripcion}</Text>
-                      <Ionicons name="right" size={16} color="blue" />
-                    </TouchableOpacity>
-                  </View>
-              }
-              keyExtractor={({ ID }, index) => ID}
-            />
+            <Ionicons.Button name="facebook" backgroundColor="#3b5998" onPress={this.PedirToken}>
+              Probar icono
+            </Ionicons.Button>
+
           </View>
 
         </View>

@@ -5,18 +5,16 @@ import Cabecera from './compCabecera'
 import DetalleItem from './compDetalleItem'
 
 const opciones = { nombre: 'Juan23', image: 'https://facebook.github.io/react-native/img/favicon.png', };
-const rutaAPI = 'http://winit.com.ar/api/busqueda';
+const rutaAPI = 'http://winit.com.ar/api/automotor';
 
 class Screen2View extends Component {
   constructor(props) {
     super(props);
     this.state = { isLoading: true }
-    console.log('22222222222222222222222222222222222222222222222');
-    console.log(props);
-    console.log('22222222222222222222222222222222222222222222222');
   }
 
-  static navigationOptions = { title: "Esta es la pantalla2" };
+  /*---------------------------------NAVEGACION------------------------------------*/
+  static navigationOptions = { title: "Detalle de autos 2 " };
 
   navigate = () => {
     const navigateToScreen1 = NavigationActions.navigate({ routeName: "ruta1", params: { name: "Mensaje enviado desde pantalla 2" } });
@@ -28,7 +26,8 @@ class Screen2View extends Component {
     return fetch(rutaAPI)
       .then((response) => response.json())
       .then((responseJson) => { this.setState({ isLoading: false, dataSource: responseJson, }, function () { }); })
-      .catch((error) => { console.error(error); });
+      .catch((error) => { console.error("Error: " + error); });
+
   }/*FIN DE COMPONENTDIDMOUNT */
 
 
@@ -45,7 +44,7 @@ class Screen2View extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Cabecera options={opciones} navegador={this.props} />
-        <View style={{ fontFamily: 'Helvetica', flex: 10, }}>
+        <View style={{  flex: 10, }}>
           <FlatList
             data={this.state.dataSource}
             renderItem={({ item }) => <DetalleItem options={item} />}

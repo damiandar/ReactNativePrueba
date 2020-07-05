@@ -1,6 +1,9 @@
 
 import { StyleSheet } from 'react-native';
 
+const EstilosGeneral = StyleSheet.create({
+  EstiloBoton: { paddingVertical: 15, paddingHorizontal: 40, backgroundColor: "indigo" },
+})
 const EstilosItem = StyleSheet.create({
 
   Estiloflatview: {
@@ -13,12 +16,12 @@ const EstilosItem = StyleSheet.create({
     //backgroundColor: '#2196F3',
   },
   colIzquierda: {
-    fontFamily: 'Helvetica',
+
     //width:60,
     flex: 2,
   },
   colDerecha: {
-    fontFamily: 'Helvetica',
+
     //width:anchoDerecha,
     flex: 5,
     backgroundColor: '#CB36C9',
@@ -39,7 +42,7 @@ const EstilosItem = StyleSheet.create({
   },
 
   EstiloAnio: {
-    fontFamily: 'Verdana',
+
     fontSize: 18,
     backgroundColor: '#8BC34A'
 
@@ -51,4 +54,4 @@ const EstilosItem = StyleSheet.create({
 
 })
 
-export { EstilosItem }
+export { EstilosGeneral, EstilosItem }

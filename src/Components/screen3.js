@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, FlatList, Alert, Button, View, TextInput, Text } from "react-native";
 import { NavigationActions } from "react-navigation";
-
+import { EstilosGeneral, EstilosItem } from './estilos/estilos';
 
 const rutaAPI = 'http://winit.com.ar/api/comentario';
 
@@ -94,11 +94,13 @@ class Screen3View extends Component {
       <View style={{ flex: 1 }}>
         <View  >
           <Button title="Volver a pantalla 1" onPress={this.navigate} />
+          <Text>ID</Text>
           <TextInput
             style={{ borderColor: 'orange', borderWidth: 5 }}
             onChangeText={(texto) => this.setState({ idIngresado: texto })}
             value={this.state.idIngresado}
           />
+          <Text>Texto</Text>
           <TextInput
             style={{ borderColor: 'blue', borderWidth: 5 }}
             onChangeText={(texto) => this.setState({ ValorIngresado: texto })}
@@ -107,9 +109,11 @@ class Screen3View extends Component {
           <Text>{'El usuario ingreso ID: ' + this.state.idIngresado}</Text>
           <Text>{'El usuario ingreso Comentario: ' + this.state.ValorIngresado}</Text>
 
-          <Button title="Crear Comentario" onPress={() => this.CrearComentario(this.state.ValorIngresado, this.state.idIngresado)} />
-          <Button title="Borrar Comentario" onPress={() => this.BorrarComentario(this.state.idIngresado)} />
-          <Button title="Actualizar Comentario" onPress={() => this.ActualizarComentario(this.state.ValorIngresado, this.state.idIngresado)} />
+          <Button color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+            title="Crear Comentario" onPress={() => this.CrearComentario(this.state.ValorIngresado, this.state.idIngresado)} />
+          <Button style={EstilosGeneral.EstiloBoton} title="Borrar Comentario" onPress={() => this.BorrarComentario(this.state.idIngresado)} />
+          <Button color="red" title="Actualizar Comentario" onPress={() => this.ActualizarComentario(this.state.ValorIngresado, this.state.idIngresado)} />
 
           <View style={{ fontFamily: 'Helvetica' }}>
             <Text>Grilla de dataSource</Text>
