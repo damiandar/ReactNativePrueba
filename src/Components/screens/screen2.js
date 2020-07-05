@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { FlatList, ActivityIndicator, View, StyleSheet } from "react-native";
 import { NavigationActions } from "react-navigation";
-import Cabecera from './compCabecera'
-import DetalleItem from './compDetalleItem'
+import Cabecera from '../compCabecera'
+import DetalleItem from '../compDetalleItem'
 
 const opciones = { nombre: 'Juan23', image: 'https://facebook.github.io/react-native/img/favicon.png', };
 const rutaAPI = 'http://winit.com.ar/api/automotor';

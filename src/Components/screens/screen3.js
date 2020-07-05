@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, FlatList, Alert, Button, View, TextInput, Text } from "react-native";
 import { NavigationActions } from "react-navigation";
-import { EstilosGeneral, EstilosItem } from './estilos/estilos';
+import { EstilosGeneral, EstilosItem } from '../estilos/estilos';
 
 const rutaAPI = 'http://winit.com.ar/api/comentario';
 

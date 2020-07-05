@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { NavigationActions } from "react-navigation";
 import { connect } from "react-redux";
-import { EstilosGeneral, EstilosItem } from './estilos/estilos';
+import { EstilosGeneral, EstilosItem } from '../estilos/estilos';
 
-import { incrementAction, decrementAction } from "../Actions/actionCreator";
+import { incrementAction, decrementAction } from "../../Actions/actionCreator";
 
 class Screen1View extends Component {
   constructor(props) {
@@ -36,18 +36,18 @@ class Screen1View extends Component {
         </View>
 
         <TouchableOpacity style={EstilosGeneral.EstiloBoton} onPress={() => this.navegar(2)}  >
-          <Text style={styles.EstiloTextoBoton}>Ir a la otra 2 -->>></Text>
+          <Text style={styles.EstiloTextoBoton}>Ir a la otra 2 --</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.EstiloBoton} onPress={() => this.navegar(3)}  >
-          <Text style={styles.EstiloTextoBoton}>Ir a la otra 3 -->>></Text>
+          <Text style={styles.EstiloTextoBoton}>Ir a la otra 3 --</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.EstiloBoton} onPress={() => this.navegar(4)}  >
-          <Text style={styles.EstiloTextoBoton}>Ir a pagina 4 -->>></Text>
+          <Text style={styles.EstiloTextoBoton}>Ir a pagina 4 --</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.EstiloBoton} onPress={() => this.navegar(5)}  >
-          <Text style={styles.EstiloTextoBoton}>Ir a pagina 5 -->>></Text>
+          <Text style={styles.EstiloTextoBoton}>Ir a pagina 5 --</Text>
         </TouchableOpacity>
 
 
