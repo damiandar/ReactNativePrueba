@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Alert, Button, View, Text, StyleSheet } from "react-native";
-import { NavigationActions } from "react-navigation";
+import { Button, View, Text, StyleSheet } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const rutaAPI = 'http://winit.com.ar/api/comentario';
+//import { navegar } from '../../Actions/actionNavegar';
+import { NavigationActions } from "react-navigation";
+import { getComentarios } from '../servicios/srvComentario';
 
 class Screen4View extends Component {
 
@@ -12,50 +12,29 @@ class Screen4View extends Component {
   }
 
   /* https://code.i-harness.com/es/q/1ccdca4 */
-  static navigationOptions = { title: "Pantalla Detalle 4" };
 
-  navigate = () => {
-    const navigateToScreen1 = NavigationActions.navigate({ routeName: "ruta1", params: { name: "Mensaje enviado desde pantalla 4" } });
-    this.props.navigation.dispatch(navigateToScreen1);
+  navegar = (Pagina) => {
+    let RutaCompleta = "ruta" + Pagina;
+    const navegaraPagina = NavigationActions.navigate({ routeName: RutaCompleta, params: { name: "Mensaje enviado desde pantalla 1" } });
+    this.props.navigation.dispatch(navegaraPagina);
   };
-
   /*---------------------------------- METODOS -------------------------------------*/
   componentDidMount() {
     this.ListarComentario();
   }/*FIN DE COMPONENTDIDMOUNT */
 
   ListarComentario() {
-    return fetch(rutaAPI)
-      .then((response) => response.json())
+    return getComentarios()
       .then((responseJson) => { console.log(responseJson); })
       .catch((error) => { console.error(error); });
   }/*Fin De Listar comentario */
-
-
-
-
-  MostrarAlerta(Titulo, Mensaje) {
-    // Works on both iOS and Android
-    Alert.alert(
-      Titulo.toString(),
-      Mensaje.toString(),
-      [
-        { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
-        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
-      ],
-      { cancelable: false }
-    )/* FIN DE ALERTA */
-  }
-
-
 
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <View >
-          <Button title="Volver a pantalla 1" onPress={this.navigate} />
+          <Button title="Volver a pantalla 1"  />
           <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>
             <FontAwesome>{Icons.chevronLeft}</FontAwesome>
             Text

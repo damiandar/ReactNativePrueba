@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import { NavigationActions } from "react-navigation";
+import { navegar } from '../../Actions/actionNavegar'
 import { connect } from "react-redux";
 import { EstilosGeneral, EstilosItem } from '../estilos/estilos';
-
+import { NavigationActions } from "react-navigation";
 import { incrementAction, decrementAction } from "../../Actions/actionCreator";
+import { Alerta} from '../../Actions/actionAlerta';
 
 class Screen1View extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
   }
 
-  static navigationOptions = { title: "jBienvenido a la aplicación 2" };
+  static navigationOptions = { title: "Bienvenido a la aplicación 2" };
 
   navegar = (Pagina) => {
     let RutaCompleta = "ruta" + Pagina;
@@ -50,6 +51,11 @@ class Screen1View extends Component {
           <Text style={styles.EstiloTextoBoton}>Ir a pagina 5 --</Text>
         </TouchableOpacity>
 
+        <View style={{ height: 100, flexDirection: "row" }}>
+          <TouchableOpacity onPress={() => Alerta('Titulo', 'Mensaje')} style={styles.EstiloBotonSumadores}   >
+            <Text style={styles.EstiloLinksSumadores} >ALERTAAAAAAAA</Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
     );

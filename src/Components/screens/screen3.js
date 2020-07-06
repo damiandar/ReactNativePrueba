@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { TouchableOpacity, FlatList, Alert, Button, View, TextInput, Text } from "react-native";
+import { TouchableOpacity, FlatList, Button, View, TextInput, Text } from "react-native";
 import { NavigationActions } from "react-navigation";
+import { navegar } from '../../Actions/actionNavegar';
 import { EstilosGeneral, EstilosItem } from '../estilos/estilos';
-
-const rutaAPI = 'http://winit.com.ar/api/comentario';
+import { Alerta } from '../../Actions/actionAlerta';
+import { getComentarios, putComentario, postComentario, deleteComentario } from '../servicios/srvComentario';
 
 class Screen3View extends Component {
 
@@ -12,88 +13,57 @@ class Screen3View extends Component {
     this.state = { ValorIngresado: '', idIngresado: 0 }
   }
 
-  static navigationOptions = { title: "Pantalla 3" };
-
-  navigate = () => {
-    const navigateToScreen1 = NavigationActions.navigate({ routeName: "ruta1", params: { name: "Mensaje enviado desde pantalla 3" } });
-    this.props.navigation.dispatch(navigateToScreen1);
+  navegar = (Pagina) => {
+    let RutaCompleta = "ruta" + Pagina;
+    const navegaraPagina = NavigationActions.navigate({ routeName: RutaCompleta, params: { name: "Mensaje enviado desde pantalla 1" } });
+    this.props.navigation.dispatch(navegaraPagina);
   };
-
-  navigate2 = () => {
-    const navigateToScreen4 = NavigationActions.navigate({ routeName: "ruta4", params: { name: "Mensaje enviado desde pantalla 3" } });
-    this.props.navigation.dispatch(navigateToScreen4);
-  };
-
-
-
-
   /*---------------------------------- METODOS -------------------------------------*/
   componentDidMount() {
     this.ListarComentario();
   }/*FIN DE COMPONENTDIDMOUNT */
 
+ 
   ListarComentario() {
-    return fetch(rutaAPI)
-      .then((response) => response.json())
+    return getComentarios()
       .then((responseJson) => { this.setState({ dataSource: responseJson, }, function () { }); })
       .catch((error) => { console.error(error); });
-  }/*Fin De Listar comentario */
+  }
+
 
   ActualizarComentario(ComentarioTexto, ComentarioID) {
-    fetch(rutaAPI, {
-      method: 'PUT',
-      headers: { Accept: 'application/json', 'Content-Type': 'application/json', },
-      body: JSON.stringify({ id: ComentarioID, descripcion: ComentarioTexto, }),
-    });/*Fin de fetch */
+    putComentario(ComentarioTexto, ComentarioID);/*Fin de fetch */
+
     this.ListarComentario();
-    this.MostrarAlerta('Actualizado', 'Se actualizó el comentario');
+    Alerta('Actualizado', 'Se actualizó el comentario');
   }/*Fin de actualizar comentario */
 
 
   BorrarComentario = (ComentarioID) => {
-    fetch(rutaAPI + '/' + ComentarioID + '/', {
-      method: 'DELETE',
-      headers: { Accept: 'application/json', 'Content-Type': 'application/json', },
-    })
+    deleteComentario(ComentarioID)
       .then(res => { return res })
       .catch(err => console.log(err))
 
     this.ListarComentario();
-    this.MostrarAlerta('Borrado', 'Se borró el comentario');
+    Alerta('Borrado', 'Se borró el comentario');
   }/*Fin de Borrar Comentario */
 
 
   CrearComentario(ComentarioTexto, ComentarioID) {
-    fetch(rutaAPI, {
-      method: 'POST',
-      headers: { Accept: 'application/json', 'Content-Type': 'application/json', },
-      body: JSON.stringify({ id: ComentarioID, descripcion: ComentarioTexto, }),
-    });/*Fin de fetch */
+    postComentario(ComentarioTexto, ComentarioID);
 
     this.ListarComentario();
-    this.MostrarAlerta('Creado', 'Se creó el comentario');
+    Alerta('Creado', 'Se creó el comentario');
   };/*fin de CrearComentario */
 
-  MostrarAlerta = (Titulo, Mensaje) => {
-    // Works on both iOS and Android
-    Alert.alert(
-      Titulo.toString(),
-      Mensaje.toString(),
-      [
-        { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
-        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
-      ],
-      { cancelable: false }
-    )/* FIN DE ALERTA */
-  };
+
 
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <View  >
-          <Button title="Volver a pantalla 1" onPress={this.navigate} />
+          <Button title="Volver a pantalla 1" onPress={this.navegar(1)} />
           <Text>ID</Text>
           <TextInput
             style={{ borderColor: 'orange', borderWidth: 5 }}
@@ -122,12 +92,12 @@ class Screen3View extends Component {
               renderItem={
                 ({ item }) =>
                   <View>
-                    <TouchableOpacity onPress={this.navigate2} >
-                      <Text>{item.ID}  {item.Descripcion}</Text>
+                    <TouchableOpacity onPress={this.navegar(2)} >
+                      <Text>{item.id}  {item.descripcion}</Text>
                     </TouchableOpacity>
                   </View>
               }
-              keyExtractor={({ ID }, index) => ID}
+              keyExtractor={({ id }, index) => id}
             />
           </View>
 

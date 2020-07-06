@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { FlatList, View, TouchableOpacity, Text, Alert } from "react-native";
-import { NavigationActions } from "react-navigation";
+import { View, TouchableOpacity, Text } from "react-native";
 
 
 

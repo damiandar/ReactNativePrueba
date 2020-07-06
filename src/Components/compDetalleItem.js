@@ -19,11 +19,11 @@ export default class DetalleItem extends React.Component {
           <Image style={EstilosItem.stretch} source={require('./fotos/fotoauto1.jpg')} />
         </View>
         <View style={EstilosItem.colDerecha}>
-          <Text style={EstilosItem.EstiloAnio}>{item.Anio} - Kms {item.KMS}</Text>
+          <Text style={EstilosItem.EstiloAnio}>{item.anio} - Kms {item.kms}</Text>
           <View style={EstilosItem.EstiloDescripcion}>
-            <Text style={{ fontWeight: "bold" }} >{item.ModeloAuto.MarcaModelo.Nombre} </Text>
-            <Text>{item.ModeloAuto.Nombre}</Text>
-            <Text style={[{ color: 'red' }, EstilosItem.EstiloDescripcion]}>{item.Descripcion}</Text>
+            <Text style={{ fontWeight: "bold" }} >{item.marca} </Text>
+            <Text>{item.modelo}</Text>
+            <Text style={[{ color: 'red' }, EstilosItem.EstiloDescripcion]}>{item.descripcion}</Text>
           </View>
         </View>
       </View>
